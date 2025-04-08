@@ -20,6 +20,7 @@ function TaskForm({ addTask, editingTask, updateTask, setEditingTask }) {
   const validate = () => {
     const newErrors = {};
     if (!title.trim()) newErrors.title = "El título es obligatorio";
+    if (!description.trim()) newErrors.description = "La descripción es obligatoria";
     return newErrors;
   };
 
@@ -64,6 +65,8 @@ function TaskForm({ addTask, editingTask, updateTask, setEditingTask }) {
         <input
           type="text"
           id="title"
+          autoFocus
+          pattern='[A-Za-z0-9 ]{3,5}'
           className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
             errors.title ? 'border-red-500' : 'border-gray-300'
           }`}
@@ -80,12 +83,16 @@ function TaskForm({ addTask, editingTask, updateTask, setEditingTask }) {
         </label>
         <textarea
           id="description"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Descripción de la tarea (opcional)"
+          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+            errors.description ? 'border-red-500' : 'border-gray-300'
+          }`}
+          placeholder="Descripción de la tarea (Min 3 caracteres, max 50 caract)"
           rows="3"
+          pattern='[A-Za-z0-9 ]{3,50}'
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
+        {errors.description && <p className="mt-1 text-sm text-red-500">{errors.description}</p>}
       </div>
       
       <div className="flex items-center justify-end space-x-3">
