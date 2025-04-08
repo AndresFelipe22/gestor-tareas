@@ -66,7 +66,7 @@ function TaskForm({ addTask, editingTask, updateTask, setEditingTask }) {
           type="text"
           id="title"
           autoFocus
-          pattern='[A-Za-z0-9 ]{3,5}'
+          pattern='[A-Za-z0-9 ]{3,50}'
           className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
             errors.title ? 'border-red-500' : 'border-gray-300'
           }`}
@@ -86,9 +86,9 @@ function TaskForm({ addTask, editingTask, updateTask, setEditingTask }) {
           className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
             errors.description ? 'border-red-500' : 'border-gray-300'
           }`}
-          placeholder="Descripción de la tarea (Min 3 caracteres, max 50 caract)"
+          placeholder="Descripción de la tarea (Min 3 caracteres, Max 250 caracteres)"
           rows="3"
-          pattern='[A-Za-z0-9 ]{3,50}'
+          pattern='[A-Za-z0-9 ]{3,250}'
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
